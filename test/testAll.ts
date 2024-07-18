@@ -8,7 +8,7 @@ console.log("=========================");
 describe("Test All", function () {
   before(async () => {});
 
-  describe("Deploy Greeter", function () {
+  describe("Deploy NFT", function () {
     it("Should set the right name Value", async function () {
       const name = "demo";
 

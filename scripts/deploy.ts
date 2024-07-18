@@ -6,7 +6,7 @@ import {
 async function main() {
   const ethValue = ethers.parseEther("0.0000000001");
 
-  const instance = await ethers.deployContract("Greeter", [], {
+  const instance = await ethers.deployContract("NftMigrator", [], {
     value: ethValue,
   });
 
