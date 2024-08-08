@@ -9,6 +9,7 @@ interface INftMigrator {
     event NftBurned(address indexed owner, uint256 indexed tokenId, bytes32 indexed solanaAddress);
 
     error NotNftContract();
+    error NoNftToMigrate();
 
     /**
      * @dev Migrate NFTs from Ethereum to Solana
