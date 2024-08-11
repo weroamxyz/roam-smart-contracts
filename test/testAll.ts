@@ -1,6 +1,8 @@
-// @ts-ignore
+"use strict";
+
 import { NftMigrator, RoamNFT } from "../typechain-types";
 import { HardhatEthersSigner } from "@nomicfoundation/hardhat-ethers/signers";
+// eslint-disable-next-line no-redeclare
 import { assert } from "chai";
 import { ethers, network } from "hardhat";
 

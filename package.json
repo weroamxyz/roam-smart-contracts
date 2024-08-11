@@ -1,9 +1,9 @@
 {
-  "name": "hardhat-template",
+  "name": "roam-smart-contracts",
   "description": "hardhat-template for developing Solidity smart contracts",
   "license": "MIT",
   "version": "1.0.0",
-  "homepage": "https://github.com/MetaBloxIO/roam-smart-contracts.git",
+  "homepage": "https://github.com/weroamxyz/roam-smart-contracts.git",
   "private": true,
   "author": "",
   "keywords": [
@@ -12,11 +12,12 @@
     "solidity"
   ],
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=20.0.0",
+    "pnpm": ">=9.5.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/MetaBloxIO/roam-smart-contracts.git"
+    "url": "https://github.com/weroamxyz/roam-smart-contracts.git"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.4.0",
@@ -30,7 +31,7 @@
     "@nomicfoundation/hardhat-network-helpers": "^1.0.11",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "@nomicfoundation/hardhat-verify": "^2.0.9",
-    "@nomiclabs/hardhat-solhint": "^3.1.0",
+    "@nomiclabs/hardhat-solhint": "^4.0.0",
     "@openzeppelin/contracts": "^5.0.2",
     "@openzeppelin/contracts-upgradeable": "^5.0.2",
     "@openzeppelin/docs-utils": "^0.1.5",
@@ -41,18 +42,17 @@
     "@types/fs-extra": "^11.0.4",
     "@types/mocha": "^10.0.7",
     "@types/node": "^20.14.14",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
-    "eslint": "^8.57.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.1",
+    "@typescript-eslint/parser": "^8.0.1",
+    "chai": "^4.5.0",
+    "eslint": "^9.9.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-mocha": "^10.5.0",
-    "eslint-plugin-n": "^17.10.2",
     "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-promise": "^6.6.0",
+    "eslint-plugin-promise": "^7.1.0",
     "ethers": "^6.13.2",
     "fs-extra": "^11.2.0",
+    "glob": "^11.0.0",
     "globals": "^15.9.0",
     "hardhat": "^2.22.8",
     "hardhat-abi-exporter": "^2.10.1",
@@ -64,6 +64,7 @@
     "mocha": "^10.7.0",
     "prettier": "^3.3.3",
     "prettier-plugin-solidity": "^1.3.1",
+    "rimraf": "^6.0.1",
     "solhint": "^5.0.3",
     "solidity-ast": "^0.4.56",
     "solidity-docgen": "0.6.0-beta.36",
@@ -89,9 +90,9 @@
     "abi": "npx hardhat export-abi",
     "coverage": "npx hardhat coverage",
     "size": "npx hardhat size-contracts",
-    "lint": "pnpm solhint && pnpm eslint && pnpm format:check",
+    "lint": "pnpm solhint && pnpm lint:ts && pnpm format:check",
     "solhint": "solhint --max-warnings 0 contracts/**/*.sol",
-    "eslint": "eslint",
+    "lint:ts": "eslint scripts/**/*.ts test/**/*.ts",
     "format:check": "prettier --check **/*.{ts,sol}",
     "format:write": "prettier --write **/*.{ts,sol}"
   },
