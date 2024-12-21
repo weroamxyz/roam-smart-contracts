@@ -1,7 +1,6 @@
-import {
-  ethers,
-  /* run */
-} from "hardhat";
+"use strict";
+
+import { ethers } from /* run */ "hardhat";
 
 async function main() {
   const ethValue = ethers.parseEther("0.0000000001");
