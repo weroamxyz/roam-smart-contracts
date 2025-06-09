@@ -16,7 +16,6 @@
     "no-console": "off",
     "immutable-vars-naming": "off",
     "comprehensive-interface": "off",
-    "named-return-values": "off",
     "foundry-test-functions": "off"  
   }
 }

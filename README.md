@@ -54,8 +54,8 @@ npx hardhat node
 npx hardhat help
 REPORT_GAS=true npx hardhat test
 npx hardhat coverage
-npx hardhat run scripts/deploy.ts
-TS_NODE_FILES=true npx ts-node scripts/deploy.ts
+npx hardhat run scripts/deploy-nft-migrator.ts
+TS_NODE_FILES=true npx ts-node scripts/deploy-nft-migrator.ts
 npx eslint '**/*.{js,ts}'
 npx eslint '**/*.{js,ts}' --fix
 npx prettier '**/*.{json,sol,md}' --check
@@ -70,7 +70,7 @@ npx solhint 'contracts/**/*.sol' --fix
 Deploy the contract to a specific network
 
 ```shell
-  npx hardhat run --network rinkeby deploy/deploy.ts
+  npx hardhat run --network rinkeby deploy/deploy-nft-migrator.ts
 ```
 
 Validate deployed contracts
