@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.21;
+pragma solidity ^0.8.29;
 
 import { INttToken } from "../interfaces/INttToken.sol";
 import { ERC20 } from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -7,8 +7,6 @@ import { ERC20Burnable } from "@openzeppelin/contracts/token/ERC20/extensions/ER
 import { ERC20Permit } from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
 import { ERC20Votes } from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
 import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
-import { Time } from "@openzeppelin/contracts/utils/types/Time.sol";
-import { Votes } from "@openzeppelin/contracts/governance/utils/Votes.sol";
 import { Nonces } from "@openzeppelin/contracts/utils/Nonces.sol";
 
 /// @custom:security-contact xxxx@gmail.com
@@ -25,15 +23,10 @@ contract RoamToken is ERC20, ERC20Burnable, ERC20Permit, ERC20Votes, INttToken, 
     constructor(
         string memory name_,
         string memory symbol_,
-        address owner_
-    ) ERC20(name_, symbol_) ERC20Permit(name_) Ownable(owner_) {}
-
-    function clock() public view virtual override returns (uint48) {
-        return Time.timestamp();
-    }
-
-    function _maxSupply() internal pure override returns (uint256) {
-        return MAX_SUPPLY;
+        address owner_,
+        address minter_
+    ) ERC20(name_, symbol_) ERC20Permit(name_) Ownable(owner_) {
+        minter = minter_;
     }
 
     /**
@@ -48,14 +41,6 @@ contract RoamToken is ERC20, ERC20Burnable, ERC20Permit, ERC20Votes, INttToken, 
         _mint(to, amount);
     }
 
-    function CLOCK_MODE() public view virtual override returns (string memory) {
-        // Check that the clock was not modified
-        if (clock() != Time.timestamp()) {
-            revert Votes.ERC6372InconsistentClock();
-        }
-        return "mode=timestamp";
-    }
-
     function setMinter(address newMinter) external onlyOwner {
         if (newMinter == address(0)) {
             revert InvalidMinterZeroAddress();
@@ -65,15 +50,15 @@ contract RoamToken is ERC20, ERC20Burnable, ERC20Permit, ERC20Votes, INttToken, 
         emit NewMinter(oldMinter, newMinter);
     }
 
-    function nonces(address _owner) public view override(ERC20Permit, Nonces) returns (uint256) {
-        return Nonces.nonces(_owner);
+    function burn(uint256 value) public override(INttToken, ERC20Burnable) {
+        super.burn(value);
     }
 
     function _update(address _from, address _to, uint256 _value) internal override(ERC20, ERC20Votes) {
         return ERC20Votes._update(_from, _to, _value);
     }
 
-    function burn(uint256 value) public override(INttToken, ERC20Burnable) {
-        super.burn(value);
+    function nonces(address _owner) public view override(ERC20Permit, Nonces) returns (uint256) {
+        return Nonces.nonces(_owner);
     }
 }

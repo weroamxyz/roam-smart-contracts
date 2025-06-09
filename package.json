@@ -83,6 +83,8 @@
     "deploy:polygon": "npx hardhat run --network polygon scripts/deploy.ts",
     "deploy:mumbai": "npx hardhat run --network mumbai scripts/deploy.ts",
     "deploy:sepolia": "npx hardhat run --network sepolia scripts/deploy.ts",
+    "deploy:bscTestnet": "npx hardhat run --network bscTestnet scripts/deploy.ts",
+    "deploy:bsc": "npx hardhat run --network bsc scripts/deploy.ts",
     "deploy:": "npx hardhat run --network mainnet scripts/deploy.ts",
     "test": "npx hardhat test",
     "abi": "npx hardhat export-abi",
@@ -91,8 +93,8 @@
     "lint": "pnpm solhint && pnpm lint:ts && pnpm format:check",
     "solhint": "solhint --max-warnings 0 contracts/**/*.sol",
     "lint:ts": "eslint scripts/**/*.ts test/**/*.ts",
-    "format:check": "prettier --check task/**/*.{ts,sol} contracts/**/*.{ts,sol} test/**/*.{ts,sol}",
-    "format:write": "prettier --write task/**/*.{ts,sol} contracts/**/*.{ts,sol} test/**/*.{ts,sol}"
+    "format:check": "prettier --check task/**/*.{ts,sol} contracts/**/*.{ts,sol} test/**/*.{ts,sol} scripts/**/*.{ts,sol}",
+    "format:write": "prettier --write task/**/*.{ts,sol} contracts/**/*.{ts,sol} test/**/*.{ts,sol} scripts/**/*.{ts,sol}"
   },
   "dependencies": {
     "cross-env": "^7.0.3",

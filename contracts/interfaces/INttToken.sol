@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache 2
-pragma solidity ^0.8.21;
+pragma solidity ^0.8.29;
 
 interface INttToken {
     /// @notice Error when the caller is not the minter.

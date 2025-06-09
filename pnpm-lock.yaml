@@ -121,7 +121,7 @@ importers:
         specifier: ^15.15.0
         version: 15.15.0
       hardhat:
-        specifier: ^2.24.2
+        specifier: ^2.24.0
         version: 2.24.2(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
       hardhat-abi-exporter:
         specifier: ^2.11.0

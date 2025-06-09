@@ -4,11 +4,15 @@
 import { ethers, run } from "hardhat";
 
 async function main() {
-  const contractName = "NftMigrator";
+  const contractName = "RoamToken";
   console.log(`Deploying ${contractName} contract...`);
 
   //Removing ethValue, USDT contracts do not need to receive ETH
-  const instance = await ethers.deployContract(contractName, [], { gasLimit: BigInt("5000000") });
+  const instance = await ethers.deployContract(
+    contractName,
+    // ["Roam QA Token", "ROAM", "0xcB79b403e88faF281A41284aFD46e00E2Ac04B92", "0x0000000000000000000000000000000000000000"],
+    { gasLimit: BigInt("5000000") }
+  );
 
   await instance.waitForDeployment();
 
