@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.29;
 
-import { INttToken } from "../interfaces/INttToken.sol";
 import { ERC20 } from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import { ERC20Burnable } from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import { ERC20Permit } from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
+import { ERC20Burnable } from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
+import { INttToken } from "../interfaces/INttToken.sol";
 
-contract RoamToken is ERC20, ERC20Burnable, ERC20Permit, INttToken, Ownable {
+contract RoamToken is ERC20, ERC20Permit, ERC20Burnable, Ownable, INttToken {
     uint256 public constant MAX_SUPPLY = 1_000_000_000e6;
     address public minter;
     /**
