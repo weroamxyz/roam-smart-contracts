@@ -9,7 +9,6 @@ import { ERC20Votes } from "@openzeppelin/contracts/token/ERC20/extensions/ERC20
 import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 import { Nonces } from "@openzeppelin/contracts/utils/Nonces.sol";
 
-/// @custom:security-contact xxxx@gmail.com
 contract RoamToken is ERC20, ERC20Burnable, ERC20Permit, ERC20Votes, INttToken, Ownable {
     uint256 public constant MAX_SUPPLY = 1_000_000_000e6;
     address public minter;
@@ -60,6 +59,10 @@ contract RoamToken is ERC20, ERC20Burnable, ERC20Permit, ERC20Votes, INttToken, 
     }
 
     function nonces(address _owner) public view override(ERC20Permit, Nonces) returns (uint256) {
-        return Nonces.nonces(_owner);
+        return super.nonces(_owner);
+    }
+
+    function _maxSupply() internal view virtual override returns (uint256) {
+        return MAX_SUPPLY;
     }
 }
