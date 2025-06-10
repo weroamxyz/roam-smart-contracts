@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  axios: '>=0.30.0'
+
 importers:
 
   .:
@@ -90,6 +93,9 @@ importers:
       '@typescript-eslint/parser':
         specifier: ^8.33.1
         version: 8.33.1(eslint@9.28.0(jiti@2.4.2))(typescript@5.8.3)
+      axios:
+        specifier: '>=0.30.0'
+        version: 1.9.0(debug@4.4.1)
       chai:
         specifier: ^4.5.0
         version: 4.5.0
@@ -121,7 +127,7 @@ importers:
         specifier: ^15.15.0
         version: 15.15.0
       hardhat:
-        specifier: ^2.24.0
+        specifier: ^2.24.2
         version: 2.24.2(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
       hardhat-abi-exporter:
         specifier: ^2.11.0
@@ -1471,9 +1477,6 @@ packages:
   at-least-node@1.0.0:
     resolution: {integrity: sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg==}
     engines: {node: '>= 4.0.0'}
-
-  axios@0.21.4:
-    resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
 
   axios@1.9.0:
     resolution: {integrity: sha512-re4CqKTJaURpzbLHtIi6XpDv20/CnpXOtjRY5/CU32L8gU8ek9UIivcfvSWvmKEngmVbrUtPpdDwWDWL7DNHvg==}
@@ -5866,12 +5869,6 @@ snapshots:
 
   at-least-node@1.0.0: {}
 
-  axios@0.21.4(debug@4.4.1):
-    dependencies:
-      follow-redirects: 1.15.9(debug@4.4.1)
-    transitivePeerDependencies:
-      - debug
-
   axios@1.9.0(debug@4.4.1):
     dependencies:
       follow-redirects: 1.15.9(debug@4.4.1)
@@ -6914,7 +6911,7 @@ snapshots:
       '@ethersproject/transactions': 5.8.0
       '@ethersproject/wallet': 5.8.0
       '@types/qs': 6.14.0
-      axios: 0.21.4(debug@4.4.1)
+      axios: 1.9.0(debug@4.4.1)
       chalk: 4.1.2
       chokidar: 3.6.0
       debug: 4.4.1(supports-color@8.1.1)
