@@ -11,8 +11,12 @@ import { Nonces } from "@openzeppelin/contracts/utils/Nonces.sol";
 
 /// @custom:security-contact xxxx@gmail.com
 contract RoamToken is ERC20, ERC20Burnable, ERC20Permit, ERC20Votes, INttToken, Ownable {
-    uint256 public constant MAX_SUPPLY = 10_000_000_000e6;
+    uint256 public constant MAX_SUPPLY = 1_000_000_000e6;
     address public minter;
+    /**
+     * @dev Total supply cap has been exceeded.
+     */
+    error ERC20ExceededCap(uint256 increasedSupply, uint256 cap);
 
     modifier onlyMinter() {
         if (msg.sender != minter) {
@@ -20,14 +24,7 @@ contract RoamToken is ERC20, ERC20Burnable, ERC20Permit, ERC20Votes, INttToken, 
         }
         _;
     }
-    constructor(
-        string memory name_,
-        string memory symbol_,
-        address owner_,
-        address minter_
-    ) ERC20(name_, symbol_) ERC20Permit(name_) Ownable(owner_) {
-        minter = minter_;
-    }
+    constructor() ERC20("Roam Token", "ROAM") ERC20Permit("Roam Token") Ownable(msg.sender) {}
 
     /**
      * @dev Returns the number of decimals used to get its user representation.
@@ -38,6 +35,10 @@ contract RoamToken is ERC20, ERC20Burnable, ERC20Permit, ERC20Votes, INttToken, 
     }
 
     function mint(address to, uint256 amount) public onlyMinter {
+        uint256 supply = totalSupply() + amount;
+        if (supply > MAX_SUPPLY) {
+            revert ERC20ExceededCap(supply, MAX_SUPPLY);
+        }
         _mint(to, amount);
     }
 
